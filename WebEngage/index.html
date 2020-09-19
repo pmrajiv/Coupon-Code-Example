@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MyPayment</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<style>
+		.card
+		{
+			    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				background-color:white;
+		}
+		.card-body
+		{
+			padding: 1.25rem;
+		}
+		.btn-primary.highlight
+		{
+			background-color:gray;
+			color:black;
+		}
+		</style>
+	</head>
+<body style="background-color:#efefef">
+		<!-- As a heading -->
+	<nav class="navbar fixed-top navbar-light bg-light" style="background-color:lightgray"> 
+		<a style="margin-left:3%" class="navbar-brand" href="#">rajiv.co.in</a>
+	</nav>
+	<div class="container" style="background-color:#efefef">
+      <!--Section: Block Content-->
+      <section class="my-2">
+        <div class="row" >
+          <div class="col-md-3 mb-3 mb-md-1">
+            <div class="view zoom z-depth-2 rounded">
+              <img class="img-fluid w-100" src="images/mobile_products/iphone.jpeg" alt="Phone">
+            </div>
+
+          </div>
+          <div class="col-md-8">
+            <h3>Iphone 11</h3>
+            <p class="mb-2 text-muted text-uppercase small">Mobiles</p>
+            <p><span class="fa fa-inr"><strong>Rs. 100000</strong></span></p>
+			<div class="row">
+				<div class="col-md-4">
+					<input type=text id="coupon-code" name="code" class="form-control w-50" placeholder="Coupon code">
+				</div>
+				<div class="col-md-4" style="margin-top:1%">
+				<a id="get-codes" data-toggle="modal" data-target="#coupon-modal"><u>Get code</u></a>
+				</div>
+			</div>
+			<br><br><br>
+            <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
+            
+          </div>
+        </div>
+		<div class="modal fade" id="coupon-modal" tabindex="-1" role="dialog" aria-labelledby="couponModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel"><b>Coupon Codes</b>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button></h4>
+					</div>
+					<div class="modal-body" style="background-color:#efefef">
+						<div class="row">
+						<div class="card-deck">
+							<div class="col-sm-4">						
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title"><span>Flat</span><h3>Rs.500 off</h3></h5>
+									<span class="card-subtitle mb-2 text-muted" id="coupon1_1">MMTFLAT500</span>
+									<br><br>
+									<button id="coupon1" name="group" data-dismiss="modal" data-toggle="collapse" class="btn card-link btn-primary" data-text-alt="Code Copied" onclick="getCouponCode(this.id)">Copy Code</button>
+								</div>
+							</div>
+							</div>
+							<div class="col-sm-4">	
+							<div class="card" >
+								<div class="card-body">
+									<h5 class="card-title"><span>Flat</span><h3>Rs.300 off</h3></h5>
+									<span class="card-subtitle mb-2 text-muted" id="coupon2_1">RRTFLAT300</span>
+									<br><br>
+									<button id="coupon2" name="group" data-dismiss="modal" data-toggle="collapse" class="btn card-link btn-primary" data-text-alt="Code Copied" onclick="getCouponCode(this.id)">Copy Code</button>
+								</div>
+							</div>
+							</div>
+							<div class="col-sm-4">	
+							<div class="card" >
+								<div class="card-body">
+									<h5 class="card-title"><span>Flat</span><h3>Rs.1000 off</h3></h5>
+									<span class="card-subtitle mb-2 text-muted" id="coupon3_1">MMTBEST</span>
+									<br><br>
+									<button id="coupon3" name="group" data-dismiss="modal" data-toggle="collapse" class="btn card-link btn-primary" data-text-alt="Code Copied" onclick="getCouponCode(this.id)">Copy Code</button>
+									
+								</div>
+							</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+      </section>
+	  
+      <!--Section: Block Content-->
+	</div>
+	<script> 
+	$(function($){
+		$('.btn[data-toggle="collapse"]').on('click', function(){
+			$(this)
+			.data('text-original', $(this).text())
+			.text($(this).data('text-alt') )
+			.data('text-alt', $(this).data('text-original'))
+			.toggleClass("highlight").siblings().removeClass("highlight");
+		//$(".btn-primary").click(function () {
+        //$(this)
+		});
+		
+	});
+	function getCouponCode(couponCode)
+	{
+		console.log(couponCode);	
+		var r = document.createRange();
+		r.selectNode(document.getElementById(couponCode+"_1"));
+		window.getSelection().removeAllRanges();
+		window.getSelection().addRange(r);
+		document.execCommand('copy');
+		window.getSelection().removeAllRanges();
+	}
+    </script> 
+</body>
+</html>
